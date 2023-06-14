@@ -2,10 +2,6 @@
 
 線上服飾購物平台
 
-## 網頁連結
-
-https://mug-e-commerce-project-yee882408.vercel.app/
-
 ## 主要使用技術
 
 - 使用Next.js 13製作
