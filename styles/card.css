@@ -1,0 +1,89 @@
+.card-container {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  width: 15rem;
+  margin: 1rem;
+  border-radius: 4px;
+  position: relative;
+
+  border: 1px solid #ccc;
+
+  box-shadow: 3px;
+  background-color: white;
+  overflow: hidden;
+  @media screen and (max-width: 1105px) {
+    width: 20rem;
+  }
+
+  @media screen and (max-width: 740px) {
+    width: 16rem;
+  }
+  @media screen and (max-width: 600px) {
+    width: 20rem;
+  }
+  @media screen and (max-width: 380px) {
+    width: 16rem;
+  }
+  @media screen and (max-width: 310px) {
+    width: 13rem;
+  }
+}
+
+.card-container:hover .img {
+  @media screen and (max-width: 1105px) {
+    transform: none;
+  }
+  transform: scale(1.2);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-image {
+  width: 100%;
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  .img {
+    object-fit: cover;
+    width: 100%;
+    height: 260px;
+    border-radius: 4px;
+  }
+}
+
+.card-desc {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.card-desc h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc p {
+  margin-bottom: 1rem;
+  font-weight: 200;
+  font-size: 1rem;
+}
+
+.grid-card {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  @media screen and (max-width: 1105px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}

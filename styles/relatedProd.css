@@ -1,0 +1,18 @@
+.swiper2 {
+  max-width: 80%;
+  max-height: 30vh;
+  --swiper-navigation-color: #d0d1d0;
+  --swiper-navigation-size: 45px;
+  --swiper-theme-color: #ff6600;
+  --swiper-pagination-color: #e2e2e2;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-slide {
+  background: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

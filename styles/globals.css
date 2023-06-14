@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind Styles */
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.cart-btn {
+  @apply border bg-lime-400 py-1.5 px-5 text-black text-sm cursor-pointer w-full h-full right-0 hover:bg-lime-500 disabled:bg-slate-50 disabled:cursor-not-allowed;
+}
+
+.coupon-input {
+  @apply w-full rounded-[7px] border border-zinc-400 bg-transparent px-1 
+  py-1 font-sans text-sm font-normal  outline-0
+  transition-all  focus:border-slate-600
+  focus:outline-0 disabled:border-0  sm:w-60;
+}
+
+.checkout-input {
+  @apply h-full w-60 rounded-[7px] border border-zinc-400 bg-transparent px-3 
+  py-2.5 font-sans text-sm font-normal  outline-0
+  transition-all  focus:border-slate-600
+  focus:outline-0;
+}
+
+.checkout-btn {
+  @apply bg-lime-400 py-1.5 px-5 text-black text-sm font-inter cursor-pointer w-full right-0 hover:bg-lime-500
+                   disabled:bg-slate-50 disabled:cursor-not-allowed;
+}
+
+.login-input {
+  @apply w-full rounded-[7px] border border-zinc-400 bg-transparent px-3 
+            py-2.5 font-sans text-sm font-normal  outline-0
+            transition-all  focus:border-slate-600
+            focus:outline-0 disabled:border-0;
+}
+
+.login-btn {
+  @apply w-full rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter mt-4;
+}
+
+.single-product-btn {
+  @apply border bg-lime-400 py-1.5 px-5 text-black  text-sm font-inter cursor-pointer  right-0 hover:bg-lime-500;
+}
+
+.prodcard-btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter;
+}
+
+.register-input {
+  @apply w-full rounded-[7px] border border-zinc-400 bg-transparent px-3 py-2.5 font-sans text-sm font-normal  outline-0 transition-all  focus:border-slate-600 focus:outline-0;
+}
+
+.member-btn {
+  @apply w-32 rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter mt-4;
+}
+
+.update-input {
+  @apply w-full mt-2 rounded-[7px] border border-zinc-400 bg-transparent px-3 py-2.5 font-sans text-sm font-normal  outline-0 transition-all  focus:border-slate-600 focus:outline-0;
+}
