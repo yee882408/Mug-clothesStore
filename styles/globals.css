@@ -57,7 +57,7 @@
 }
 
 .single-product-btn {
-  @apply border bg-lime-400 py-1.5 px-5 text-black  text-sm font-inter cursor-pointer  right-0 hover:bg-lime-500;
+  @apply border bg-lime-400 py-1.5 px-5 text-black  text-sm font-inter cursor-pointer  right-0 hover:bg-lime-500 w-full;
 }
 
 .prodcard-btn {

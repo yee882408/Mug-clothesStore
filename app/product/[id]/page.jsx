@@ -96,8 +96,11 @@ const page = ({ params }) => {
         <>
           <ClientOnly>
             <Provider>
-              <div className="flex flex-col gap-4 px-10 items-center pt-10">
-                <div className="bg-white flex lg:flex-row flex-col lg:gap-28 gap-10 mb-4 ">
+              <div
+                // className="flex flex-col gap-4 px-10 items-center pt-10"
+                className="flex flex-col m-auto px-2 sm:px-4 md:px-10 xl:px-52 my-10"
+              >
+                <div className="bg-white flex lg:flex-row flex-col lg:gap-28 gap-10 mb-4 flex-center">
                   {/* left */}
                   <div className="flex">
                     <img
@@ -107,16 +110,16 @@ const page = ({ params }) => {
                     />
                   </div>
                   {/* right */}
-                  <div className="flex flex-col min-w-[300px]">
+                  <div className="flex flex-col min-w-[300px] p-4">
                     <h1 className="font-bold text-4xl mt-4 mb-4">
                       {products.title}
                     </h1>
-                    <h1 className="font-bold mt-4">【商品描述】</h1>
+                    <h1 className="font-bold mt-4 mb-4">【商品描述】</h1>
                     <h1> {products.description}</h1>
                     <div className="mt-4 font-semibold text-xl">
                       <h1> NT${products.price}</h1>
                     </div>
-                    <div className="mt-4 flex flex-col ">
+                    <div className="mt-4 flex flex-center">
                       <button
                         onClick={() => {
                           addToCart(products._id);
@@ -134,7 +137,7 @@ const page = ({ params }) => {
                         立即購買
                       </button>
                     </div>
-                    <div className=" flex-center">
+                    <div className="flex-center mt-2">
                       {session?.user.id && (
                         <button
                           onClick={addWish}
@@ -143,10 +146,12 @@ const page = ({ params }) => {
                           {wished ? (
                             <>
                               <FavoriteIcon className="text-red-500" />
+                              <span className="text-sm">加入願望清單</span>
                             </>
                           ) : (
                             <>
                               <FavoriteBorderOutlinedIcon />
+                              <span className="text-sm">已加入願望清單</span>
                             </>
                           )}
                         </button>

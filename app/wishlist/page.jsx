@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ProdList from "@components/Product/ProdList";
@@ -9,31 +9,29 @@ import Spinner from "@components/Spinner";
 
 const page = () => {
   const router = useRouter();
-  const { data: session } = useSession();
-
   const [wishList, setWishList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getWishProduct();
-    setIsLoading(false);
-  }, [session]);
+    (async () => {
+      const session = await getSession();
+      if (session?.user.email) {
+        await axios.get("/api/wishlist").then((response) => {
+          setWishList(response.data.map((i) => i.product));
+          setIsLoading(false);
+        });
+      } else {
+        setWishList([]);
+        router.push("/login");
+      }
+    })();
+  }, []);
 
   // 將產品從願望清單移除的時候，把願望清單內的內容更新
   function removeFromWishlist(id) {
     setWishList((prev) => {
       return [...prev.filter((prod) => prod._id.toString() !== id)];
     });
-  }
-  async function getWishProduct() {
-    if (session?.user.email) {
-      await axios.get("/api/wishlist").then((response) => {
-        setWishList(response.data.map((i) => i.product));
-      });
-    } else {
-      setWishList([]);
-      router.push("/login");
-    }
   }
 
   return (

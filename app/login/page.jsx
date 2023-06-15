@@ -42,6 +42,7 @@ const Nav = () => {
   }, []);
 
   async function onSubmit(values) {
+    console.log(values);
     const data = await signIn("credentials", {
       redirect: false,
       email: values.email,
@@ -49,9 +50,9 @@ const Nav = () => {
       callbackUrl: "/",
     });
 
-    if (data.error === "找不到該使用者，請註冊新帳號") {
+    if (data.error === "找不到該使用者") {
       toast.error("找不到該使用者，請註冊新帳號");
-    } else if (data.error === "密碼不符合") {
+    } else if (data.error === "密碼錯誤") {
       toast.error("密碼輸入錯誤，請重新嘗試");
     } else {
       // 成功登入將用戶導向至主頁面

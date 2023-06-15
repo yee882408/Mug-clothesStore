@@ -31,15 +31,6 @@
   }
 }
 
-.card-container:hover .img {
-  @media screen and (max-width: 1105px) {
-    transform: none;
-  }
-  transform: scale(1.2);
-  overflow: hidden;
-  transition: all 0.5s ease-in-out;
-}
-
 .card-image {
   width: 100%;
   position: relative;

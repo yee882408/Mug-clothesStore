@@ -19,7 +19,7 @@ export const authOptions = {
 
         const result = await User.findOne({ email: credentials.email });
         if (!result) {
-          return null;
+          throw new Error("找不到該使用者");
         }
 
         // 比對使用者密碼
@@ -29,7 +29,7 @@ export const authOptions = {
         );
 
         if (!checkPassword || result.email !== credentials.email) {
-          return null;
+          throw new Error("密碼錯誤");
         }
 
         return result;

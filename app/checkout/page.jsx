@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Spinner from "@components/Spinner";
+import { toast, useToasterStore } from "react-hot-toast";
 
 const page = () => {
   const { cartProducts, clearCart } = useContext(CartContext);
@@ -21,6 +22,15 @@ const page = () => {
 
   const router = useRouter();
   const { data: session } = useSession();
+  const { toasts } = useToasterStore();
+
+  const TOAST_LIMIT = 1;
+  useEffect(() => {
+    toasts
+      .filter((t) => t.visible) // Only consider visible toasts
+      .filter((_, i) => i >= TOAST_LIMIT) // Is toast index over limit?
+      .forEach((t) => toast.dismiss(t.id)); // Dismiss – Use toast.remove(t.id) for no exit animation
+  }, [toasts]);
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -103,6 +113,7 @@ const page = () => {
     inputIsInValid: couponIsInValid,
     inputHandler: couponChangeHandler,
     blurHandler: couponBlurHandler,
+    reset: couponReset,
   } = useInput((value) => value === "10%off");
 
   useEffect(() => {
@@ -119,15 +130,30 @@ const page = () => {
       setTotalBillPrice(totalBillPrice - totalBillPrice * (1 / 10));
       setUsedCoupon(true);
     }
-  }, [cartProducts, products, couponIsValid, pressDiscountBtn]);
+    if (pressDiscountBtn && couponIsInValid) {
+      setUsedCoupon(false);
+    }
+  }, [
+    cartProducts,
+    products,
+    couponIsValid,
+    pressDiscountBtn,
+    couponIsInValid,
+  ]);
 
   const couponHandler = () => {
-    if (usedCoupon === true) return;
-
+    setTotalDiscount(0);
     if (couponIsValid) {
-      setTotalDiscount(totalBillPrice * (1 / 10));
+      setTotalDiscount(totalProductPrice * (1 / 10));
+    }
+    if (usedCoupon) {
+      toast.success("已成功使用優惠碼，請進行結帳");
+      return;
     }
     setPressDiscountBtn(true);
+    if (pressDiscountBtn && couponIsInValid) {
+      toast.error("優惠碼輸入錯誤");
+    }
   };
 
   let formIsValid = false;
@@ -304,7 +330,7 @@ const page = () => {
                       />
                       {postCodeIsInValid && (
                         <p className="text-red-600 font-bold text-sm">
-                          請輸入正確的郵遞區號
+                          請輸入三碼郵遞區號
                         </p>
                       )}
                     </div>
