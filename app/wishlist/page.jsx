@@ -15,18 +15,8 @@ const page = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      const session = await getSession();
-      if (session?.user.email) {
-        await axios.get("/api/wishlist").then((response) => {
-          setWishList(response.data.map((i) => i.product));
-          setIsLoading(false);
-        });
-      } else {
-        setWishList([]);
-        router.push("/login");
-      }
-    })();
+    getWishProduct();
+    setIsLoading(false);
   }, [session]);
 
   // 將產品從願望清單移除的時候，把願望清單內的內容更新
@@ -34,6 +24,16 @@ const page = () => {
     setWishList((prev) => {
       return [...prev.filter((prod) => prod._id.toString() !== id)];
     });
+  }
+  async function getWishProduct() {
+    if (session?.user.email) {
+      await axios.get("/api/wishlist").then((response) => {
+        setWishList(response.data.map((i) => i.product));
+      });
+    } else {
+      setWishList([]);
+      router.push("/login");
+    }
   }
 
   return (

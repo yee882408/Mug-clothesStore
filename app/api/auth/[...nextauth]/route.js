@@ -40,12 +40,13 @@ export const authOptions = {
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
       // 儲存user的id
-      session.user.id = sessionUser._id.toString();
+      if (sessionUser) {
+        session.user.id = sessionUser._id.toString();
 
-      // 避免使用credential登入時，沒有name的狀況
-      // 當使用credential登入時，儲存username到session
-      session.user.name = sessionUser.username;
-
+        // 避免使用credential登入時，沒有name的狀況
+        // 當使用credential登入時，儲存username到session
+        session.user.name = sessionUser.username;
+      }
       return session;
     },
     async signIn({ account, profile, user, credentials }) {

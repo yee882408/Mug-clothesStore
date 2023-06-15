@@ -6,7 +6,6 @@ import { toast, useToasterStore } from "react-hot-toast";
 import Link from "next/link";
 import Button from "../Button";
 import "../../styles/card.css";
-import Provider from "../Provider";
 
 const ProdItem = ({
   _id,
@@ -33,20 +32,18 @@ const ProdItem = ({
 
   return (
     <>
-      <Provider>
-        <div className="card-container">
-          <div className="card-image">
-            <Link href={`/product/${_id}`}>
-              <img src={image} alt="Product item" className="img" />
-            </Link>
-          </div>
-          <div className="card-desc">
-            <h1>{title}</h1>
-            <p>NT${price}</p>
-            <Button onClick={addToCart}></Button>
-          </div>
+      <div className="card-container">
+        <div className="card-image">
+          <Link href={`/product/${_id}`}>
+            <img src={image} alt="Product item" className="img" />
+          </Link>
         </div>
-      </Provider>
+        <div className="card-desc">
+          <h1>{title}</h1>
+          <p>NT${price}</p>
+          <Button onClick={addToCart}></Button>
+        </div>
+      </div>
     </>
   );
 };

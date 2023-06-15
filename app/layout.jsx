@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         />
         <Provider>
           <CartContextProvider>
-            <div className="min-h-screen relative flex flex-col">
+            <div className="min-h-screen flex flex-col">
               <Nav></Nav>
               <main className="bg-white flex-grow">{children}</main>
               <Bottom></Bottom>
