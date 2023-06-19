@@ -110,7 +110,7 @@ const page = ({ params }) => {
                     />
                   </div>
                   {/* right */}
-                  <div className="flex flex-col min-w-[300px] p-4">
+                  <div className="flex flex-col sm:w-[500px] p-4 min-w-[300px]">
                     <h1 className="font-bold text-4xl mt-4 mb-4">
                       {products.title}
                     </h1>
@@ -119,7 +119,7 @@ const page = ({ params }) => {
                     <div className="mt-4 font-semibold text-xl">
                       <h1> NT${products.price}</h1>
                     </div>
-                    <div className="mt-4 flex flex-center">
+                    <div className="mt-4 flex flex-center sm:flex-row flex-col">
                       <button
                         onClick={() => {
                           addToCart(products._id);
@@ -146,12 +146,12 @@ const page = ({ params }) => {
                           {wished ? (
                             <>
                               <FavoriteIcon className="text-red-500" />
-                              <span className="text-sm">加入願望清單</span>
+                              <span className="text-sm">已加入願望清單</span>
                             </>
                           ) : (
                             <>
                               <FavoriteBorderOutlinedIcon />
-                              <span className="text-sm">已加入願望清單</span>
+                              <span className="text-sm">加入願望清單</span>
                             </>
                           )}
                         </button>

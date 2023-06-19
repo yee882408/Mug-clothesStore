@@ -3,29 +3,31 @@
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { signOut, useSession, getProviders } from "next-auth/react";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import { CartContext } from "./CartContext";
+
 import logo from "../public/logo.jpg";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SearchIcon from "@mui/icons-material/Search";
-import { CartContext } from "./CartContext";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+
 const Nav = () => {
   const { data: session } = useSession();
   const { cartProducts, setSearchEl, searchRef } = useContext(CartContext);
   const router = useRouter();
   const [providers, setProviders] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [dropdown, setDropDown] = useState(false);
 
   useEffect(() => {
     (async () => {
       const res = await getProviders();
       setProviders(res);
-      setIsLoading(false);
     })();
   }, []);
 
@@ -94,9 +96,15 @@ const Nav = () => {
               <PersonOutlineIcon />
             </Link>
           )}
-          <Link href="/wishlist" className="mr-3 hover:text-white">
-            <FavoriteBorderIcon />
-          </Link>
+          {session?.user ? (
+            <Link href="/wishlist" className="mr-3 hover:text-white">
+              <FavoriteBorderIcon />
+            </Link>
+          ) : (
+            <Link href="/login" className="mr-3 hover:text-white">
+              <FavoriteBorderIcon />
+            </Link>
+          )}
           <Link href="/cart" className="mr-5 hover:text-white flex relative">
             <ShoppingCartIcon />
             <div className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">

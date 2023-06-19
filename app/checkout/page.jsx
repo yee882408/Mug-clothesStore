@@ -15,7 +15,6 @@ const page = () => {
   const [products, setProducts] = useState([]);
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [pressDiscountBtn, setPressDiscountBtn] = useState(false);
-  const [usedCoupon, setUsedCoupon] = useState(false);
   const [totalBillPrice, setTotalBillPrice] = useState(0);
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -126,32 +125,26 @@ const page = () => {
 
     setTotalBillPrice(newTotal);
     setTotalProductPrice(newTotal);
+
     if (pressDiscountBtn && couponIsValid) {
       setTotalBillPrice(totalBillPrice - totalBillPrice * (1 / 10));
-      setUsedCoupon(true);
     }
     if (pressDiscountBtn && couponIsInValid) {
-      setUsedCoupon(false);
+      setTotalDiscount(0);
     }
-  }, [
-    cartProducts,
-    products,
-    couponIsValid,
-    pressDiscountBtn,
-    couponIsInValid,
-  ]);
+  }, [cartProducts, products, pressDiscountBtn, totalDiscount]);
 
   const couponHandler = () => {
     setTotalDiscount(0);
+    setPressDiscountBtn(true);
+
     if (couponIsValid) {
       setTotalDiscount(totalProductPrice * (1 / 10));
-    }
-    if (usedCoupon) {
       toast.success("已成功使用優惠碼，請進行結帳");
       return;
     }
-    setPressDiscountBtn(true);
-    if (pressDiscountBtn && couponIsInValid) {
+    if (couponIsInValid) {
+      setTotalDiscount(0);
       toast.error("優惠碼輸入錯誤");
     }
   };

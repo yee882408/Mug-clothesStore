@@ -10,6 +10,7 @@ const page = () => {
   const { searchEl } = useContext(CartContext);
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  // 使用防抖避免使用者每次輸入都向後端請求
   const debouncedSearch = useCallback(debounce(searchProducts, 500), []);
 
   useEffect(() => {

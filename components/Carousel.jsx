@@ -35,10 +35,10 @@ const Carousel = () => {
           <Image src={fp1} alt="women clothes" priority={true}></Image>
         </SwiperSlide>
         <SwiperSlide className="my-custom-swiper-1">
-          <Image src={fp2} alt="men clothes"></Image>
+          <Image src={fp2} alt="men clothes" priority={true}></Image>
         </SwiperSlide>
         <SwiperSlide className="my-custom-swiper-1">
-          <Image src={fp3} sizes="100vh" alt="shoes"></Image>
+          <Image src={fp3} alt="shoes" priority={true}></Image>
         </SwiperSlide>
       </Swiper>
     </div>
